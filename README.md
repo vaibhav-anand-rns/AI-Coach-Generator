@@ -1,115 +1,118 @@
-# 🚀 AI Career Coach - Full Stack Application
+# 🚀 AI Career Coach
 
+> An intelligent career development platform powered by AI to help advance your professional journey.
+> https://aicoachgeneratorvaibhav-xzi4.vercel.app/ click this link to go to project
 
-## 📺 Tutorial
-**Watch the complete tutorial:** https://youtu.be/UbXpRv5ApKA
+<!-- Deployment Fix: Updated DATABASE_URL with complete Neon connection string -->
 
-## 🎯 Overview
+## ✨ Features
 
-AI Career Coach is a comprehensive career development platform that leverages AI to help users advance their careers. Built with modern web technologies and powered by Google Gemini AI.
+🤖 **AI-Powered Resume Builder** - Create professional resumes with intelligent suggestions  
+📝 **Smart Cover Letter Generator** - Generate personalized cover letters for any job  
+🎤 **Interview Practice** - Practice with AI-generated questions and get feedback  
+📊 **Career Dashboard** - Track your progress and career insights  
+🔐 **Secure Authentication** - User management with Clerk  
+📱 **Responsive Design** - Works seamlessly on all devices  
 
-### ✨ Key Features
-- 🤖 **AI-Powered Resume Builder** - Generate professional resumes with AI assistance
-- 📝 **Smart Cover Letter Generator** - Create tailored cover letters for any job
-- 🎤 **Interview Preparation** - Practice with AI-generated interview questions
-- 📊 **Career Dashboard** - Track your progress and get insights
-- 🔐 **Secure Authentication** - Powered by Clerk
-- 📱 **Responsive Design** - Works perfectly on all devices
+## 🛠 Tech Stack
 
-### 🛠 Tech Stack
-- **Frontend:** Next.js 15.1.4, React, Tailwind CSS, Shadcn UI
+- **Frontend:** Next.js 15, React, Tailwind CSS, Shadcn UI
 - **Backend:** Next.js API Routes, Server Actions
 - **Database:** PostgreSQL (Neon) with Prisma ORM
 - **Authentication:** Clerk
 - **AI:** Google Gemini API
-- **Styling:** Tailwind CSS + Shadcn UI Components
+- **Deployment:** Vercel
 
 ## 🚀 Quick Start
 
-### 1. Clone & Install
-```bash
-git clone <repository-url>
-cd ai-career-coach-master
-npm install
-```
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Git
 
-### 2. Environment Setup
-Create a `.env` file in the root directory:
+### Installation
 
-```env
-# Database (Get from https://neon.tech/)
-DATABASE_URL=postgresql://username:password@your-neon-url.neon.tech/neondb?sslmode=require
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/vaibhav-anand-rns/AI-Coach-Generator.git
+   cd AI-Coach-Generator
+   ```
 
-# Clerk Authentication (Get from https://clerk.com/)
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
-CLERK_SECRET_KEY=sk_test_your_secret_key_here
+2. **Install dependencies**
+   ```bash
+   npm install --legacy-peer-deps
+   ```
 
-# Clerk Redirect URLs (Keep these as-is)
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+3. **Environment Setup**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   # Database (Neon PostgreSQL)
+   DATABASE_URL=your_neon_database_url
+   
+   # Clerk Authentication
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   CLERK_SECRET_KEY=your_clerk_secret_key
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+   
+   # Google Gemini AI
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
 
-# Google Gemini AI (Get from https://makersuite.google.com/)
-GEMINI_API_KEY=AIzaSyB_your_gemini_api_key_here
-```
+4. **Database Setup**
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
 
-### 3. Database Setup
-```bash
-npx prisma generate
-npx prisma db push
-```
+5. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
 
-### 4. Run the Application
-```bash
-npm run dev
-```
+   
 
-Visit http://localhost:3000 to see your application!
+## 📖 Documentation
 
-## 📖 Setup Guides
+- � **[Complete Beginner's Guide](./COMPLETE_BEGINNER_GUIDE.md)** - Step-by-step setup for beginners
+- 🤖 **[AI Assistant Guide](./COPILOT_INSTRUCTION_GUIDE.md)** - Instructions for AI helpers
+- 🚀 **[Setup Guide](./SETUP_GUIDE.md)** - Quick setup for developers
 
-### 🔰 **For Complete Beginners (Zero Knowledge)**
-👉 **[COMPLETE_BEGINNER_GUIDE.md](./COMPLETE_BEGINNER_GUIDE.md)** - Step-by-step guide with every single detail
+## 🔑 API Keys Setup
 
-### 🚀 **For Developers (Quick Setup)**  
-👉 **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** - Fast track setup for experienced developers
+### Neon Database
+1. Create account at [Neon Console](https://console.neon.tech/)
+2. Create new project
+3. Copy connection string
 
-### 🤖 **For AI Assistants/Copilots**
-👉 **[COPILOT_INSTRUCTION_GUIDE.md](./COPILOT_INSTRUCTION_GUIDE.md)** - Instructions for AI assistants to help users with this project
+### Clerk Authentication  
+1. Create account at [Clerk Dashboard](https://dashboard.clerk.com/)
+2. Create new application
+3. Copy API keys from dashboard
 
-## 🔑 Getting Your API Keys
-
-### 🗄️ Neon Database
-1. Visit [Neon Console](https://console.neon.tech/)
-2. Create a new project
-3. Copy the connection string
-
-### 🔐 Clerk Authentication
-1. Visit [Clerk Dashboard](https://dashboard.clerk.com/)
-2. Create a new application
-3. Copy your publishable and secret keys
-
-### 🤖 Google Gemini AI
+### Google Gemini AI
 1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create a new API key
-3. Copy the key
+2. Create API key
+3. Copy the generated key
 
 ## 📁 Project Structure
 
 ```
-├── app/                 # Next.js App Router
-│   ├── (auth)/         # Authentication pages
-│   ├── (main)/         # Main application
-│   └── api/            # API routes
-├── components/         # Reusable components
-├── actions/           # Server actions
-├── lib/               # Utilities
-├── prisma/            # Database schema
-└── public/            # Static assets
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Authentication pages
+│   ├── (main)/            # Main application
+│   └── api/               # API endpoints
+├── components/            # Reusable components
+├── actions/              # Server actions
+├── lib/                  # Utilities
+├── prisma/               # Database schema
+└── public/               # Static assets
 ```
 
-## 🎯 Available Scripts
+## 🎯 Available Commands
 
 ```bash
 npm run dev          # Start development server
@@ -119,37 +122,25 @@ npm run lint        # Run ESLint
 npx prisma studio   # Open database GUI
 ```
 
-## 🔧 Troubleshooting
-
-### Common Issues
-
-**"User not found" Error:**
-- Restart the development server
-- Clear browser cache and sign in again
-
-**Database Connection Issues:**
-- Verify your `DATABASE_URL` in `.env`
-- Run `npx prisma db push`
-
-**Authentication Issues:**
-- Check Clerk keys in `.env`
-- Verify redirect URLs in Clerk dashboard
-
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+Deploy to Vercel with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vaibhav-anand-rns/AI-Coach-Generator)
+
+### Manual Deployment
 1. Push to GitHub
 2. Connect to Vercel
 3. Add environment variables
-4. Deploy!
+4. Deploy
 
 ## 🤝 Contributing
 
 1. Fork the project
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
 ## 📄 License
 
@@ -157,6 +148,6 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ by the community**
+**Made by vaibhav**
 
-For questions or support, check the [detailed setup guide](./SETUP_GUIDE.md) or open an issue!
+For support or questions, check the documentation or open an issue!
