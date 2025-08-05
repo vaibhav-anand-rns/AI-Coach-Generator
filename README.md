@@ -147,6 +147,6 @@ This project is licensed under the MIT License.
 
 ---
 
-**Made with 💗 by Learning Unique**
+**Made by vaibhav**
 
 For support or questions, check the documentation or open an issue!
