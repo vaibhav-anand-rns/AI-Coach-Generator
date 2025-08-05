@@ -2,7 +2,7 @@
 
 > An intelligent career development platform powered by AI to help advance your professional journey.
 
-<!-- Deployment Fix: Updated environment variables for Vercel deployment -->
+<!-- Deployment Fix: Environment variables and authentication setup completed -->
 
 ## ✨ Features
 
