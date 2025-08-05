@@ -2,6 +2,8 @@
 
 > An intelligent career development platform powered by AI to help advance your professional journey.
 
+<!-- Deployment Fix: Updated environment variables for Vercel deployment -->
+
 ## ✨ Features
 
 🤖 **AI-Powered Resume Builder** - Create professional resumes with intelligent suggestions  
