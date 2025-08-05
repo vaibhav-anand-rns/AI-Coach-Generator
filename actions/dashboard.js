@@ -3,6 +3,7 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { checkUser } from "@/lib/checkUser";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -40,29 +41,31 @@ export async function getIndustryInsights() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
+  const user = await checkUser();
+  if (!user) throw new Error("User not found");
+
+  // Get user with industry insight
+  const userWithInsight = await db.user.findUnique({
+    where: { id: user.id },
     include: {
       industryInsight: true,
     },
   });
 
-  if (!user) throw new Error("User not found");
-
   // If no insights exist, generate them
-  if (!user.industryInsight) {
-    const insights = await generateAIInsights(user.industry);
+  if (!userWithInsight.industryInsight) {
+    const insights = await generateAIInsights(userWithInsight.industry || 'Technology');
 
     const industryInsight = await db.industryInsight.create({
       data: {
-        industry: user.industry,
-        ...insights,
-        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        userId: user.id,
+        industry: userWithInsight.industry || 'Technology',
+        insights: insights,
       },
     });
 
     return industryInsight;
   }
 
-  return user.industryInsight;
+  return userWithInsight.industryInsight;
 }

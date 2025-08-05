@@ -4,6 +4,7 @@ import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { revalidatePath } from "next/cache";
+import { checkUser } from "@/lib/checkUser";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -12,25 +13,37 @@ export async function saveResume(content) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
   try {
-    const resume = await db.resume.upsert({
+    // First check if user already has a resume
+    const existingResume = await db.resume.findFirst({
       where: {
         userId: user.id,
       },
-      update: {
-        content,
-      },
-      create: {
-        userId: user.id,
-        content,
-      },
     });
+
+    let resume;
+    if (existingResume) {
+      // Update existing resume
+      resume = await db.resume.update({
+        where: {
+          id: existingResume.id,
+        },
+        data: {
+          content,
+        },
+      });
+    } else {
+      // Create new resume
+      resume = await db.resume.create({
+        data: {
+          userId: user.id,
+          content,
+        },
+      });
+    }
 
     revalidatePath("/resume");
     return resume;
@@ -44,13 +57,10 @@ export async function getResume() {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
+  const user = await checkUser();
   if (!user) throw new Error("User not found");
 
-  return await db.resume.findUnique({
+  return await db.resume.findFirst({
     where: {
       userId: user.id,
     },
@@ -61,17 +71,19 @@ export async function improveWithAI({ current, type }) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
+  const user = await checkUser();
+  if (!user) throw new Error("User not found");
+
+  // Get user with industry insight
+  const userWithInsight = await db.user.findUnique({
+    where: { id: user.id },
     include: {
       industryInsight: true,
     },
   });
 
-  if (!user) throw new Error("User not found");
-
   const prompt = `
-    As an expert resume writer, improve the following ${type} description for a ${user.industry} professional.
+    As an expert resume writer, improve the following ${type} description for a ${userWithInsight?.industryInsight?.industry || 'general'} professional.
     Make it more impactful, quantifiable, and aligned with industry standards.
     Current content: "${current}"
 

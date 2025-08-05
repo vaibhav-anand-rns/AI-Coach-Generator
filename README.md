@@ -1,12 +1,5 @@
 # 🚀 AI Career Coach - Full Stack Application
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.1.4-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?style=for-the-badge&logo=clerk)](https://clerk.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)](https://prisma.io/)
-[![Neon](https://img.shields.io/badge/Neon-Database-00E599?style=for-the-badge&logo=postgresql)](https://neon.tech/)
-[![Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge&logo=google)](https://ai.google.dev/)
-
-![AI Career Coach Banner](https://github.com/user-attachments/assets/eee79242-4056-4d19-b655-2873788979e1)
 
 ## 📺 Tutorial
 **Watch the complete tutorial:** https://youtu.be/UbXpRv5ApKA
