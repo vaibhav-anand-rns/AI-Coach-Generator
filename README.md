@@ -1,6 +1,7 @@
 # 🚀 AI Career Coach
 
 > An intelligent career development platform powered by AI to help advance your professional journey.
+> https://aicoachgeneratorvaibhav-xzi4.vercel.app/ click this link to go to project
 
 <!-- Deployment Fix: Updated DATABASE_URL with complete Neon connection string -->
 
