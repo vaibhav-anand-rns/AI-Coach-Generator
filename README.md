@@ -2,7 +2,7 @@
 
 > An intelligent career development platform powered by AI to help advance your professional journey.
 
-<!-- Deployment Fix: Environment variables and authentication setup completed -->
+<!-- Deployment Fix: Updated DATABASE_URL with complete Neon connection string -->
 
 ## ✨ Features
 
