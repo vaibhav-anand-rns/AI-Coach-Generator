@@ -4,19 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:pull": "prisma db pull",
-    "db:studio": "prisma studio",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset",
-    "setup": "npm install && npx prisma generate",
-    "clean": "rm -rf .next node_modules/.cache",
-    "type-check": "tsc --noEmit"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.10",
